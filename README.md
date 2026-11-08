@@ -130,8 +130,6 @@ MCD :
 
 ![alt text](image.png)
 
-Contraintes à traiter dans la partie 2 : âge minimum de 18 ans, non-chevauchement des réservations, capacité maximale, note entre 1 et 5, délai de 14 jours pour l'avis.
-
 ## MLD
 
 
