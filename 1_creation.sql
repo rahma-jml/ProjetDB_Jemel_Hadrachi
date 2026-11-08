@@ -49,6 +49,15 @@ CREATE TABLE equipement (
     nom_equipement VARCHAR(50) NOT NULL
 );
 
+CREATE TABLE photo (
+ id_logement INT NOT NULL,
+ numero_photo INT NOT NULL,
+ url_photo VARCHAR(255) NOT NULL,
+ PRIMARY KEY (id_logement, numero_photo),
+ FOREIGN KEY (id_logement) REFERENCES logement(id_logement)
+ ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 CREATE TABLE proposer (
     id_logement  INT NOT NULL,
     id_equipement INT NOT NULL,
