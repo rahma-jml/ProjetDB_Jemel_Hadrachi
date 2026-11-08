@@ -168,7 +168,7 @@ INSERT INTO logement (id_logement, titre_logement, type_logement, capacite_max, 
 
 
 
-INSERT INTO equipement (id_equipement, nom_equipement) VALUES
+INSERT INTO equipement (id_equipement, libelle_equipement) VALUES
   (1, 'Wifi'),
   (2, 'Cuisine équipée'),
   (3, 'Parking gratuit'),
