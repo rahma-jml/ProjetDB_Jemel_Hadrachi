@@ -4,8 +4,7 @@
 
 Groupe : JEMEL Rahma et HADRACHI Lila 
 
----
-
+ 
 ## Étape 1 : analyse des besoins
 
 ## Domaine choisi
@@ -130,3 +129,23 @@ Types : **AN** alphanumérique, **N** numérique entier, **D** décimal (taille 
 MCD : 
 
 ![alt text](image.png)
+
+Contraintes à traiter dans la partie 2 : âge minimum de 18 ans, non-chevauchement des réservations, capacité maximale, note entre 1 et 5, délai de 14 jours pour l'avis.
+
+## MLD
+
+
+- ZONE_GEO (<u>id_zone</u>, nom_zone, #id_zone_parent)
+- UTILISATEUR (<u>email_utilisateur</u>, mot_de_passe, nom_utilisateur, prenom_utilisateur, date_naissance, date_inscription, statut_compte, iban)
+- LOGEMENT (<u>id_logement</u>, titre_logement, type_logement, capacite_max, prix_nuit, adresse_rue, code_postal, latitude, longitude, #email_hote, #id_zone)
+- EQUIPEMENT (<u>id_equipement</u>, libelle_equipement)
+- PROPOSER (<u>#id_logement, #id_equipement</u>)
+- PHOTO (<u>#id_logement, numero_photo</u>, url_photo)
+- MOYEN_PAIEMENT (<u>id_moyen</u>, type_moyen_paiement, #email_utilisateur)
+- RESERVATION (<u>numero_reservation</u>, date_arrivee, date_depart, nb_voyageurs, statut_reservation, montant_total, #email_locataire, #id_logement)
+- PAIEMENT (<u>ref_transaction</u>, montant_paiement, devise, date_paiement, statut_paiement, #numero_reservation, #id_moyen, #ref_transaction_origine)
+- AVIS (<u>id_avis</u>, note_globale, commentaire_avis, #numero_reservation)  *(numero_reservation est unique)*
+- RECHERCHE (<u>id_recherche</u>, date_recherche, #email_utilisateur, #id_zone)
+
+
+
