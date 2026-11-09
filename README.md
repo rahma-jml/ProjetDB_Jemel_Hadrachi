@@ -145,6 +145,23 @@ MCD :
 - AVIS (<u>id_avis</u>, note_globale, commentaire_avis, #numero_reservation)  *(numero_reservation est unique)*
 - RECHERCHE (<u>id_recherche</u>, date_recherche, #email_utilisateur, #id_zone)
 
+  ## Scénario d'utilisation
+
+Rôle : Rahma et Lila, responsables marketing de la plateforme.
+
+Contexte : la plateforme prépare la campagne « Escapades d'hiver » (décembre 2026 à février 2027).Rahma et Lila doivent choisir les logements à mettre en avant, cibler les bonnes communications (hôtes, voyageurs, nouveaux inscrits inactifs) et suivre les résultats financiers.
+
+Données à extraire :
+
+| Besoin | Données extraites 
+|---|---|---|
+| Choisir les logements à promouvoir | Logements de gamme moyenne ou haut de gamme, équipés (piscine, climatisation), adaptés aux familles, les mieux notés | 
+| Connaître les destinations et les prix | Prix par type, destinations les plus recherchées, hiérarchie pays > ville > quartier | 
+| Cibler les hôtes | Hôtes ayant plusieurs logements, logements jamais réservés, hôtes les plus rentables | 
+| Cibler les voyageurs | Voyageurs sans réservation, sans recherche, réservations d'hiver confirmées |
+| Suivre l'activité financière | Chiffre d'affaires par logement, paiements par devise, remboursements, réservations par statut | 
+| Contrôler la qualité | Avis très négatifs, logements avec avis 5/5 |
+
 
 
 
