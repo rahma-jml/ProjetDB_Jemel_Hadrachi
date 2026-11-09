@@ -256,3 +256,12 @@ Coût total : 40 + 420 + 384 + 1 674 + 33 = **2 551 instructions**.
 
 
 
+**Limites et améliorations possibles :**
+
+- **Règles non vérifiées par la base** : non-chevauchement des réservations, nombre de voyageurs <= capacité du logement, avis déposé seulement pour un séjour terminé et dans les 14 jours, moyen de paiement appartenant au locataire, remboursement <= paiement d'origine. Elles demandent des déclencheurs (triggers) dont la syntaxe dépend du SGBD.
+- **Informations des règles de gestion absentes du modèle** (dictionnaire limité à 35 données) : téléphone, description, surface, nombre de chambres et de lits, frais de ménage, heures d'arrivée et de départ, politique d'annulation, calendrier de disponibilités, notes détaillées, réponse de l'hôte, messagerie, factures, photo de couverture.
+- **Suppressions en cascade** : supprimer un utilisateur efface ses réservations et ses paiements. Pour des données financières, un archivage ou un statut « supprimé » serait préférable.
+- **Rôles hôte et locataire** : un utilisateur est hôte s'il a un logement. Une table de rôles ou un indicateur explicite faciliterait certaines requêtes.
+- **Montants multi-devises** : un taux de change daté permettrait de comparer des paiements en devises différentes.
+
+
