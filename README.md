@@ -153,14 +153,14 @@ MCD :
 
 **Données à extraire :**
 
-| Besoin | Données extraites | Requêtes |
-|---|---|---|
-| Choisir les logements à promouvoir | Logements de gamme moyenne ou haut de gamme, équipés (piscine, climatisation), adaptés aux familles, les mieux notés | A2, A3, B4, C6, D5, D6, D8 |
-| Connaître les destinations et les prix | Prix par type, destinations les plus recherchées, hiérarchie pays > ville > quartier | B1, B6, C2, C7, D1 |
-| Cibler les hôtes | Hôtes ayant plusieurs logements, logements jamais réservés, hôtes les plus rentables | B2, B3, C3, D2, D9 |
-| Cibler les voyageurs | Voyageurs sans réservation, sans recherche, réservations d'hiver confirmées | A4, A5, C1, C4, D3, D7 |
-| Suivre l'activité financière | Chiffre d'affaires par logement, paiements par devise, remboursements, réservations par statut | B3, B5, B7, C5 |
-| Contrôler la qualité | Avis très négatifs, logements avec avis 5/5 | A6, D4 |
+| Besoin | Données extraites | 
+|---|---|
+| Choisir les logements à promouvoir | Logements de gamme moyenne ou haut de gamme, équipés (piscine, climatisation), adaptés aux familles, les mieux notés | 
+| Connaître les destinations et les prix | Prix par type, destinations les plus recherchées, hiérarchie pays > ville > quartier |
+| Cibler les hôtes | Hôtes ayant plusieurs logements, logements jamais réservés, hôtes les plus rentables | 
+| Cibler les voyageurs | Voyageurs sans réservation, sans recherche, réservations d'hiver confirmées |
+| Suivre l'activité financière | Chiffre d'affaires par logement, paiements par devise, remboursements, réservations par statut | 
+| Contrôler la qualité | Avis très négatifs, logements avec avis 5/5 | 
 
 
 
