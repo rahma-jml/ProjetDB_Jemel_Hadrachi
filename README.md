@@ -163,6 +163,96 @@ MCD :
 | Contrôler la qualité | Avis très négatifs, logements avec avis 5/5 | 
 
 
+**Expression en algèbre relationnelle** 
+
+π<sub>titre_logement, nom_utilisateur</sub> ( σ<sub>type_logement='villa' ∧ statut_reservation='terminee'</sub> ( (LOGEMENT ⋈ RESERVATION) ⋈ UTILISATEUR ) )
+
+**Cardinalités réelles de la base** :
+
+| Relation | Lignes |
+|---|---|
+| LOGEMENT | 40 |
+| RESERVATION | 384 |
+| UTILISATEUR | 70 |
+| σ type='villa' (LOGEMENT) | 6 |
+| σ statut='terminee' (RESERVATION) | 279 |
+| LOGEMENT ⋈ RESERVATION | 384 |
+| σ villa (LOGEMENT) ⋈ σ terminee (RESERVATION) | 33 |
+| σ villa (LOGEMENT) ⋈ UTILISATEUR | 6 |
+| Résultat final (après DISTINCT) | 4 |
+
+**Modèle de coût utilisé** 
+
+- sélection : une comparaison par ligne lue, donc coût = nombre de lignes de la relation d'entrée ;
+- jointure (boucles imbriquées) : coût = |R| x |S|, une comparaison par couple de lignes ;
+- projection : coût = nombre de lignes de la relation d'entrée ;
+- la lecture des tables de base n'est pas comptée.
+
+## Plan A : jointures d'abord, sélection à la fin 
+
+```mermaid
+graph TD
+    A1["π titre_logement, nom_utilisateur<br/>4 lignes (coût 33)"]
+    A2["σ type_logement='villa' ∧ statut_reservation='terminee'<br/>33 lignes (coût 384)"]
+    A3["⋈ l.email_hote = u.email_utilisateur<br/>384 lignes (coût 26 880)"]
+    A4["⋈ r.id_logement = l.id_logement<br/>384 lignes (coût 15 360)"]
+    A5["LOGEMENT<br/>40 lignes"]
+    A6["RESERVATION<br/>384 lignes"]
+    A7["UTILISATEUR<br/>70 lignes"]
+    A1 --> A2 --> A3
+    A3 --> A4
+    A3 --> A7
+    A4 --> A5
+    A4 --> A6
+```
+
+Coût total : 15 360 + 26 880 + 384 + 33 = **42 657 instructions**.
+
+## Plan B : sélections descendues, puis jointure avec UTILISATEUR en dernier
+
+```mermaid
+graph TD
+    B1["π titre_logement, nom_utilisateur<br/>4 lignes (coût 33)"]
+    B2["⋈ l.email_hote = u.email_utilisateur<br/>33 lignes (coût 2 310)"]
+    B3["⋈ r.id_logement = l.id_logement<br/>33 lignes (coût 1 674)"]
+    B4["σ type_logement='villa'<br/>6 lignes (coût 40)"]
+    B5["σ statut_reservation='terminee'<br/>279 lignes (coût 384)"]
+    B6["LOGEMENT<br/>40 lignes"]
+    B7["RESERVATION<br/>384 lignes"]
+    B8["UTILISATEUR<br/>70 lignes"]
+    B1 --> B2
+    B2 --> B3
+    B2 --> B8
+    B3 --> B4
+    B3 --> B5
+    B4 --> B6
+    B5 --> B7
+```
+
+Coût total : 40 + 384 + 1 674 + 2 310 + 33 = **4 441 instructions**.
+
+## Plan C : sélections descendues, jointure des petites relations en premier
+
+```mermaid
+graph TD
+    C1["π titre_logement, nom_utilisateur<br/>4 lignes (coût 33)"]
+    C2["⋈ r.id_logement = l.id_logement<br/>33 lignes (coût 1 674)"]
+    C3["⋈ l.email_hote = u.email_utilisateur<br/>6 lignes (coût 420)"]
+    C4["σ statut_reservation='terminee'<br/>279 lignes (coût 384)"]
+    C5["σ type_logement='villa'<br/>6 lignes (coût 40)"]
+    C6["UTILISATEUR<br/>70 lignes"]
+    C7["RESERVATION<br/>384 lignes"]
+    C8["LOGEMENT<br/>40 lignes"]
+    C1 --> C2
+    C2 --> C3
+    C2 --> C4
+    C3 --> C5
+    C3 --> C6
+    C4 --> C7
+    C5 --> C8
+```
+
+Coût total : 40 + 420 + 384 + 1 674 + 33 = **2 551 instructions**.
 
 
 
